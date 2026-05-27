@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">注册新账号</view>
+    <view class="form-item"><text class="label">账号</text><input placeholder="设置登录账号" value="{{form.username}}" bindinput="onInput" data-field="username" /></view>
+    <view class="form-item"><text class="label">姓名</text><input placeholder="真实姓名" value="{{form.realName}}" bindinput="onInput" data-field="realName" /></view>
+    <view class="form-item"><text class="label">密码</text><input placeholder="设置密码(至少6位)" password="true" value="{{form.password}}" bindinput="onInput" data-field="password" /></view>
+    <view class="form-item"><text class="label">身份</text>
+      <picker range="{{roles}}" range-key="label" value="{{roleIdx}}" bindchange="onRoleChange">
+        <text class="{{form.role ? '' : 'placeholder'}}">{{form.role ? roles[roleIdx].label : '选择身份'}}</text>
+      </picker>
+    </view>
+    <view class="form-item"><text class="label">专业</text>
+      <picker range="{{majors}}" range-key="majorName" value="{{majorIdx}}" bindchange="onMajorChange">
+        <text class="{{form.majorId ? '' : 'placeholder'}}">{{form.majorId ? majors[majorIdx].majorName : '选择所属专业'}}</text>
+      </picker>
+    </view>
+    <view class="form-item" wx:if="{{form.role === 'STUDENT'}}"><text class="label">年级</text>
+      <picker range="{{grades}}" value="{{gradeIdx}}" bindchange="onGradeChange">
+        <text>{{form.grade || '选择年级'}}</text>
+      </picker>
+    </view>
+    <view class="form-item"><text class="label">学号</text><input placeholder="学号(学生必填)" value="{{form.studentNo}}" bindinput="onInput" data-field="studentNo" /></view>
+    <view class="form-item"><text class="label">手机</text><input placeholder="联系电话" value="{{form.phone}}" bindinput="onInput" data-field="phone" /></view>
+    <button class="btn-primary" style="margin-top:30rpx" bindtap="handleRegister" loading="{{loading}}">注 册</button>
+  </view>
+</view>

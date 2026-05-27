@@ -1,0 +1,72 @@
+<view class="container">
+  <view class="card">
+    <text class="section-title">我的课程</text>
+    <view class="course-item" wx:for="{{courses}}" wx:key="id">
+      <view class="course-left">
+        <text class="course-name">{{item.courseName}}</text>
+        <text class="text-gray">{{item.courseCode}} · {{item.majorName}} · {{item.credit}}学分</text>
+      </view>
+      <text class="tag tag-green">在授</text>
+    </view>
+    <view class="empty" wx:if="{{!courses.length}}">暂无课程</view>
+  </view>
+
+  <view class="card">
+    <view class="flex-between" style="margin-bottom:20rpx">
+      <text class="section-title" style="margin-bottom:0">推荐教材</text>
+      <text class="add-link" bindtap="showAddRecommend">+ 推荐新教材</text>
+    </view>
+    <view class="rec-item" wx:for="{{recommends}}" wx:key="id">
+      <view class="rec-body">
+        <text class="rec-title">{{item.textbookTitle}}</text>
+        <text class="text-gray">{{item.author}} · {{item.publisher}}</text>
+        <text class="rec-reason" wx:if="{{item.reason}}">{{item.reason}}</text>
+      </view>
+      <text class="op-btn op-danger" bindtap="deleteRecommend" data-id="{{item.id}}">删除</text>
+    </view>
+    <view class="empty" wx:if="{{!recommends.length}}">暂无推荐教材</view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">笔记审核</text>
+    <view class="review-item" wx:for="{{reviewNotes}}" wx:key="id">
+      <view class="review-body">
+        <text class="review-title">{{item.title}}</text>
+        <text class="text-gray">{{item.authorName}} · {{item.courseName}}</text>
+        <view class="review-tags" wx:if="{{item.noteType || item.grade}}">
+          <text class="mini-tag" wx:if="{{item.noteType}}">{{item.noteType}}</text>
+          <text class="mini-tag" wx:if="{{item.grade}}">{{item.grade}}</text>
+        </view>
+      </view>
+      <view class="review-ops">
+        <text class="op-btn op-primary" bindtap="approveNote" data-id="{{item.id}}">通过</text>
+        <text class="op-btn op-gold" bindtap="recommendNote" data-id="{{item.id}}">推荐</text>
+        <text class="op-btn op-danger" bindtap="rejectNote" data-id="{{item.id}}">驳回</text>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!reviewNotes.length}}">暂无待审核笔记</view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">发布通知</text>
+    <view class="notice-form">
+      <view class="form-item">
+        <text class="form-label">通知标题</text>
+        <input class="form-input" placeholder="请输入通知标题" value="{{noticeTitle}}" bindinput="onNoticeTitleInput" maxlength="50"/>
+      </view>
+      <view class="form-item">
+        <text class="form-label">通知内容</text>
+        <textarea class="form-textarea" placeholder="请输入通知内容" value="{{noticeContent}}" bindinput="onNoticeContentInput" maxlength="500"/>
+      </view>
+      <view class="form-item">
+        <text class="form-label">目标课程</text>
+        <picker mode="selector" range="{{coursePickerList}}" range-key="name" value="{{coursePickerIndex}}" bindchange="onCoursePickerChange">
+          <view class="picker-value">{{coursePickerList[coursePickerIndex].name || '请选择课程'}}</view>
+        </picker>
+      </view>
+      <view class="form-btn-row">
+        <text class="publish-btn" bindtap="publishNotice">发布通知</text>
+      </view>
+    </view>
+  </view>
+</view>

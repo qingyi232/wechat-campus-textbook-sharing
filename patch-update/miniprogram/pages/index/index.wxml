@@ -1,0 +1,111 @@
+<view class="container">
+  <view class="welcome-card">
+    <view class="welcome-text">
+      <text class="welcome-hello">你好，{{userInfo.realName || '同学'}}</text>
+      <text class="welcome-role">{{roleMap[userInfo.role] || ''}}</text>
+    </view>
+    <image class="welcome-img" src="/images/icon-logo.png" mode="aspectFit" />
+  </view>
+
+  <swiper class="banner-swiper" indicator-dots indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#fff" autoplay circular interval="{{4000}}">
+    <swiper-item>
+      <view class="banner-item banner-1" bindtap="switchToTextbook">
+        <view class="banner-content">
+          <text class="banner-title">二手教材市场</text>
+          <text class="banner-desc">低价好书，循环利用</text>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="banner-item banner-2" bindtap="switchToNote">
+        <view class="banner-content">
+          <text class="banner-title">优质笔记共享</text>
+          <text class="banner-desc">名师推荐，高分必备</text>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="banner-item banner-3">
+        <view class="banner-content">
+          <text class="banner-title">校园知识社区</text>
+          <text class="banner-desc">分享知识，共同成长</text>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <view class="search-bar" bindtap="goSearch">
+    <image class="search-svg" src="/images/icon-search.png" mode="aspectFit" />
+    <text class="search-placeholder">搜索教材、笔记...</text>
+  </view>
+
+  <view class="quick-nav">
+    <text class="section-title">快捷入口</text>
+    <view class="nav-grid">
+      <view class="nav-item" bindtap="goTo" data-url="/pages/textbook/publish/publish">
+        <view class="nav-icon" style="background:#EBF5F0">
+          <image class="svg-icon" src="/images/icon-publish.png" mode="aspectFit" />
+        </view>
+        <text>发布教材</text>
+      </view>
+      <view class="nav-item" bindtap="goTo" data-url="/pages/note/upload/upload">
+        <view class="nav-icon" style="background:#FFF8ED">
+          <image class="svg-icon" src="/images/icon-upload.png" mode="aspectFit" />
+        </view>
+        <text>上传笔记</text>
+      </view>
+      <view class="nav-item" bindtap="goTo" data-url="/pages/mine/favorites/favorites">
+        <view class="nav-icon" style="background:#FFF3E0">
+          <image class="svg-icon" src="/images/icon-star.png" mode="aspectFit" />
+        </view>
+        <text>我的收藏</text>
+      </view>
+      <view class="nav-item" bindtap="goTo" data-url="/pages/notice/notice">
+        <view class="nav-icon" style="background:#FBE9E7;position:relative">
+          <image class="svg-icon" src="/images/icon-bell.png" mode="aspectFit" />
+          <view class="unread-badge" wx:if="{{unreadCount > 0}}">{{unreadCount > 99 ? '99+' : unreadCount}}</view>
+        </view>
+        <text>消息通知</text>
+      </view>
+      <view class="nav-item" wx:if="{{userInfo.role === 'TEACHER'}}" bindtap="goTo" data-url="/pages/teacher/teacher">
+        <view class="nav-icon" style="background:#F3E8FF">
+          <image class="svg-icon" src="/images/icon-teacher.png" mode="aspectFit" />
+        </view>
+        <text>教师功能</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="flex-between">
+      <text class="section-title">热门教材</text>
+      <text class="more-link" bindtap="switchToTextbook">查看更多 ></text>
+    </view>
+    <scroll-view scroll-x class="hot-scroll">
+      <view class="hot-item" wx:for="{{hotTextbooks}}" wx:key="id" bindtap="goTextbookDetail" data-id="{{item.id}}">
+        <image class="hot-img" src="{{item.images[0] || '/images/default-book.png'}}" mode="aspectFill" />
+        <text class="hot-title text-ellipsis">{{item.title}}</text>
+        <text class="price">{{item.price}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section">
+    <view class="flex-between">
+      <text class="section-title">推荐笔记</text>
+      <text class="more-link" bindtap="switchToNote">查看更多 ></text>
+    </view>
+    <view class="note-card" wx:for="{{recommendNotes}}" wx:key="id" bindtap="goNoteDetail" data-id="{{item.id}}">
+      <view class="note-info">
+        <text class="note-title text-ellipsis">{{item.title}}</text>
+        <text class="text-gray">{{item.courseName || '通用'}} · {{item.authorName}}</text>
+        <view class="note-stats">
+          <text class="tag tag-gold" wx:if="{{item.isRecommended}}">教师推荐</text>
+          <text class="text-gray">评分 {{item.avgRating}} · {{item.downloadCount}}次下载</text>
+        </view>
+      </view>
+      <text class="note-price-free" wx:if="{{item.isFree}}">免费</text>
+      <text class="price" wx:else>{{item.price}}</text>
+    </view>
+  </view>
+</view>

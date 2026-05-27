@@ -1,0 +1,12 @@
+.filter-bar { display: flex; gap: 16rpx; margin-bottom: 20rpx; background: #fff; padding: 16rpx 24rpx; border-radius: 12rpx; box-shadow: 0 2rpx 8rpx rgba(45,52,54,0.03); }
+.filter-btn { font-size: 24rpx; color: #555; padding: 8rpx 16rpx; background: #F7F5F2; border-radius: 20rpx; }
+.filter-btn.active { background: #3C8D6E; color: #fff; }
+.textbook-card { background: #fff; border-radius: 16rpx; padding: 20rpx; margin-bottom: 16rpx; display: flex; gap: 20rpx; box-shadow: 0 2rpx 8rpx rgba(45,52,54,0.03); }
+.tb-img { width: 180rpx; height: 200rpx; border-radius: 12rpx; flex-shrink: 0; background: #F7F5F2; }
+.tb-info { flex: 1; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.tb-title { font-size: 30rpx; font-weight: 500; margin-bottom: 6rpx; }
+.tb-tags { display: flex; gap: 8rpx; flex-wrap: wrap; margin-top: 8rpx; }
+.empty { text-align: center; padding: 100rpx 0; color: #7F8C8D; }
+.loading { text-align: center; padding: 30rpx; color: #7F8C8D; font-size: 24rpx; }
+.fab-btn { position: fixed; right: 40rpx; bottom: 140rpx; width: 100rpx; height: 100rpx; background: linear-gradient(135deg, #3C8D6E, #2E7A5E); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8rpx 24rpx rgba(60,141,110,0.35); }
+.fab-icon { width: 44rpx; height: 44rpx; }

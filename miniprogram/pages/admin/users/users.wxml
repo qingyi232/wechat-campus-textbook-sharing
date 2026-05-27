@@ -1,0 +1,50 @@
+<view class="container">
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索用户名/姓名" value="{{keyword}}" bindinput="onKeyword" bindconfirm="search" />
+    <view class="search-btn" bindtap="search">搜索</view>
+  </view>
+
+  <view class="filter-bar">
+    <view class="filter-item {{roleFilter===''?'active':''}}" bindtap="filterRole" data-role="">全部</view>
+    <view class="filter-item {{roleFilter==='STUDENT'?'active':''}}" bindtap="filterRole" data-role="STUDENT">学生</view>
+    <view class="filter-item {{roleFilter==='TEACHER'?'active':''}}" bindtap="filterRole" data-role="TEACHER">教师</view>
+    <view class="filter-item {{roleFilter==='ADMIN'?'active':''}}" bindtap="filterRole" data-role="ADMIN">管理员</view>
+  </view>
+
+  <view class="user-list">
+    <view class="user-card" wx:for="{{users}}" wx:key="id">
+      <view class="user-header">
+        <view class="user-avatar">{{item.realName ? item.realName[0] : '?'}}</view>
+        <view class="user-info">
+          <text class="user-name">{{item.realName || item.username}}</text>
+          <text class="user-role {{item.role === 'ADMIN' ? 'role-admin' : item.role === 'TEACHER' ? 'role-teacher' : 'role-student'}}">{{roleMap[item.role]}}</text>
+        </view>
+        <view class="user-status {{item.status === 1 ? 'status-active' : 'status-disabled'}}">{{item.status === 1 ? '正常' : '禁用'}}</view>
+      </view>
+      <view class="user-detail">
+        <text class="detail-item">账号: {{item.username}}</text>
+        <text class="detail-item" wx:if="{{item.studentId}}">学号: {{item.studentId}}</text>
+        <text class="detail-item" wx:if="{{item.majorName}}">专业: {{item.majorName}}</text>
+      </view>
+      <view class="user-actions">
+        <view class="action-btn {{item.status === 1 ? 'btn-warn' : 'btn-success'}}" bindtap="toggleStatus" data-id="{{item.id}}" data-status="{{item.status}}">
+          {{item.status === 1 ? '禁用' : '启用'}}
+        </view>
+        <view class="action-btn btn-info" bindtap="resetPwd" data-id="{{item.id}}" data-name="{{item.realName}}">重置密码</view>
+        <view class="action-btn btn-danger" bindtap="deleteUser" data-id="{{item.id}}" data-name="{{item.realName}}" wx:if="{{item.role !== 'ADMIN'}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!loading && users.length === 0}}">
+    <text>暂无用户数据</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="load-more" wx:if="{{hasMore && !loading}}" bindtap="loadMore">
+    <text>加载更多</text>
+  </view>
+</view>

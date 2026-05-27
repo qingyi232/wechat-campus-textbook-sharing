@@ -1,0 +1,69 @@
+<view class="container" wx:if="{{detail}}">
+  <swiper class="img-swiper" indicator-dots circular>
+    <swiper-item wx:for="{{detail.images}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" class="swiper-img" />
+    </swiper-item>
+    <swiper-item wx:if="{{!detail.images.length}}">
+      <image src="/images/default-book.png" mode="aspectFill" class="swiper-img" />
+    </swiper-item>
+  </swiper>
+
+  <view class="card">
+    <view class="flex-between">
+      <text class="price" style="font-size:40rpx">{{detail.price}}</text>
+      <text class="original-price" wx:if="{{detail.originalPrice}}">原价 ¥{{detail.originalPrice}}</text>
+    </view>
+    <text class="detail-title">{{detail.title}}</text>
+    <view class="detail-meta">
+      <text wx:if="{{detail.author}}">作者: {{detail.author}}</text>
+      <text wx:if="{{detail.publisher}}">出版社: {{detail.publisher}}</text>
+      <text wx:if="{{detail.edition}}">版次: {{detail.edition}}</text>
+      <text wx:if="{{detail.isbn}}">ISBN: {{detail.isbn}}</text>
+    </view>
+    <view class="detail-tags">
+      <text class="tag tag-blue">{{detail.courseName || '通用课程'}}</text>
+      <text class="tag tag-orange">{{conditionMap[detail.bookCondition]}}</text>
+      <text class="tag tag-green" wx:if="{{detail.majorName}}">{{detail.majorName}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">教材描述</text>
+    <text class="desc-text">{{detail.description || '暂无描述'}}</text>
+  </view>
+
+  <view class="card">
+    <text class="section-title">卖家信息</text>
+    <view class="seller-info">
+      <text>{{detail.sellerName}}</text>
+      <text class="text-gray">{{detail.contactType === 'WECHAT' ? '微信' : '电话'}}: {{detail.contactInfo}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="flex-between" style="margin-bottom:20rpx">
+      <text class="section-title" style="margin-bottom:0">评论 ({{comments.length}})</text>
+    </view>
+    <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+      <text class="comment-user">{{item.userName}}</text>
+      <text class="comment-content">{{item.content}}</text>
+      <text class="text-gray">{{item.createTime}}</text>
+    </view>
+    <view class="comment-input">
+      <input placeholder="写评论..." value="{{commentText}}" bindinput="onCommentInput" />
+      <text class="send-btn" bindtap="sendComment">发送</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-item" bindtap="toggleFavorite">
+      <image class="bar-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='{{isFavorited ? \"%23e74c3c\" : \"none\"}}' stroke='{{isFavorited ? \"%23e74c3c\" : \"%23999\"}}' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E" />
+      <text>收藏</text>
+    </view>
+    <view class="bar-item" bindtap="showReport">
+      <image class="bar-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e67e22' stroke-width='2'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E" />
+      <text>举报</text>
+    </view>
+    <view class="bar-contact" bindtap="contactSeller">联系卖家</view>
+  </view>
+</view>

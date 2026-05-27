@@ -1,0 +1,61 @@
+<view class="container" wx:if="{{detail}}">
+  <view class="note-header">
+    <text class="note-detail-title">{{detail.title}}</text>
+    <view class="note-tags">
+      <text class="tag tag-green">{{detail.courseName || '通用'}}</text>
+      <text class="tag tag-gold" wx:if="{{detail.isRecommended}}">{{detail.recommendTeacherName}}推荐</text>
+      <text class="tag tag-orange" wx:if="{{!detail.isFree}}">付费 ¥{{detail.price}}</text>
+      <text class="tag tag-green" wx:if="{{detail.isFree}}">免费</text>
+    </view>
+    <view class="note-meta">
+      <text>评分 {{detail.avgRating}} ({{detail.ratingCount}}人评)</text>
+      <text style="margin-left:20rpx">浏览 {{detail.viewCount}}</text>
+      <text style="margin-left:20rpx">下载 {{detail.downloadCount}}</text>
+      <text style="margin-left:20rpx">收藏 {{detail.favoriteCount}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="section-title">笔记描述</text>
+    <text class="note-desc">{{detail.description || '暂无描述'}}</text>
+    <text class="text-gray" style="display:block;margin-top:12rpx">上传者：{{detail.authorName}} · {{detail.majorName}} · {{detail.grade}}级</text>
+  </view>
+
+  <view class="file-section">
+    <text class="section-title">笔记文件</text>
+    <view class="file-item" wx:for="{{detail.files}}" wx:key="id">
+      <image class="svg-icon-sm" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%233C8D6E' d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5zM8 12h8v2H8zm0 4h8v2H8z'/%3E%3C/svg%3E" mode="aspectFit" style="flex-shrink:0" />
+      <view style="flex:1;margin:0 16rpx;overflow:hidden">
+        <text class="file-name text-ellipsis" style="display:block">{{item.fileName}}</text>
+        <text class="text-gray">{{item.fileType}} · {{item.fileSizeMB || '0'}}MB</text>
+      </view>
+      <text class="download-btn" bindtap="downloadFile" data-url="{{item.fileUrl}}">下载</text>
+    </view>
+  </view>
+
+  <view class="rating-section">
+    <view class="flex-between" style="margin-bottom:16rpx">
+      <text class="section-title" style="margin-bottom:0">评价 ({{ratings.length}})</text>
+    </view>
+    <view class="rating-item" wx:for="{{ratings}}" wx:key="id">
+      <view class="flex-between">
+        <text class="rating-user">{{item.userName}}</text>
+        <text class="rating-score">{{item.score}}分</text>
+      </view>
+      <text style="font-size:26rpx;color:#555;margin-top:6rpx;display:block" wx:if="{{item.comment}}">{{item.comment}}</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="bar-action" bindtap="toggleFavorite">
+      <image wx:if="{{isFavorited}}" class="svg-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23CF5C3F' d='m12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z'/%3E%3C/svg%3E" mode="aspectFit" />
+      <image wx:else class="svg-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%237F8C8D' stroke-width='2' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54z'/%3E%3C/svg%3E" mode="aspectFit" />
+      <text class="bar-action-text" style="{{isFavorited ? 'color:#CF5C3F' : ''}}">{{isFavorited ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class="bar-action" bindtap="showRate">
+      <image class="svg-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23C9A96E' d='m12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21L12 17.77L5.82 21L7 14.14l-5-4.87l6.91-1.01z'/%3E%3C/svg%3E" mode="aspectFit" />
+      <text class="bar-action-text">评价</text>
+    </view>
+    <view class="bar-contact" bindtap="downloadAll">下载笔记</view>
+  </view>
+</view>

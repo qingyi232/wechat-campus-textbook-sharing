@@ -1,0 +1,91 @@
+===================================================
+  校园二手教材流转与笔记共享系统 - 小程序补丁
+  修复日期: 2026-05-14
+===================================================
+
+本补丁修复了以下问题：
+1. 首页增加轮播图 Banner
+2. 笔记详情页评价和收藏按钮不可见（增加文字标签）
+3. 联系卖家增加拨打电话和站内消息功能
+4. 新增聊天页面（站内消息对接）
+
+===================================================
+  补丁文件清单（共 10 个文件）
+===================================================
+
+【修改的文件（覆盖到 miniprogram 目录下同路径）】
+
+1. pages/index/index.wxml       ← 首页增加轮播图
+2. pages/index/index.wxss       ← 轮播图样式
+3. pages/note/detail/detail.wxml  ← 笔记详情底部栏加文字标签
+4. pages/note/detail/detail.wxss  ← 底部栏样式优化
+5. pages/textbook/detail/detail.js ← 联系卖家功能增强
+6. utils/api.js                  ← 新增 messageApi
+7. app.json                      ← 注册 chat 页面路由
+
+【新增的文件（放到 miniprogram 目录下对应位置）】
+
+8. pages/notice/chat/chat.wxml   ← 聊天页面模板
+9. pages/notice/chat/chat.wxss   ← 聊天页面样式
+10. pages/notice/chat/chat.js    ← 聊天页面逻辑
+11. pages/notice/chat/chat.json  ← 聊天页面配置
+
+===================================================
+  部署步骤
+===================================================
+
+【步骤一】备份原文件
+
+建议先备份以下原文件（以防万一）：
+  miniprogram/pages/index/index.wxml
+  miniprogram/pages/index/index.wxss
+  miniprogram/pages/note/detail/detail.wxml
+  miniprogram/pages/note/detail/detail.wxss
+  miniprogram/pages/textbook/detail/detail.js
+  miniprogram/utils/api.js
+  miniprogram/app.json
+
+【步骤二】覆盖修改的文件
+
+将补丁中的以下文件覆盖到项目 miniprogram 目录下：
+
+  补丁文件                           → 项目路径
+  ─────────────────────────────────────────────────
+  pages/index/index.wxml             → miniprogram/pages/index/index.wxml
+  pages/index/index.wxss             → miniprogram/pages/index/index.wxss
+  pages/note/detail/detail.wxml      → miniprogram/pages/note/detail/detail.wxml
+  pages/note/detail/detail.wxss      → miniprogram/pages/note/detail/detail.wxss
+  pages/textbook/detail/detail.js    → miniprogram/pages/textbook/detail/detail.js
+  utils/api.js                       → miniprogram/utils/api.js
+  app.json                           → miniprogram/app.json
+
+【步骤三】新增聊天页面
+
+在项目中创建目录（如果不存在）：
+  miniprogram/pages/notice/chat/
+
+将补丁中以下 4 个文件放入该目录：
+  pages/notice/chat/chat.wxml
+  pages/notice/chat/chat.wxss
+  pages/notice/chat/chat.js
+  pages/notice/chat/chat.json
+
+【步骤四】重新编译
+
+在微信开发者工具中：
+  1. 打开项目
+  2. 点击菜单「编译」或按 Ctrl+B 重新编译
+  3. 在模拟器中检查以下页面：
+     - 首页：应看到轮播图 Banner
+     - 笔记详情：底部应显示「收藏」「评价」文字按钮
+     - 教材详情：点击「联系卖家」应弹出操作菜单
+
+===================================================
+  注意事项
+===================================================
+
+1. 覆盖前务必备份原文件
+2. 站内消息功能需要后端配合实现 /api/message 相关接口
+   如后端尚未实现，「拨打电话」和「复制联系方式」功能可正常使用
+3. 本补丁仅涉及小程序端文件，不涉及后端和数据库修改
+4. 如果项目使用了 npm 构建，覆盖后需重新构建 npm

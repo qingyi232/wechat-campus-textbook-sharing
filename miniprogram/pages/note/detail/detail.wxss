@@ -1,0 +1,20 @@
+.note-header { background: #fff; padding: 30rpx; margin-bottom: 16rpx; }
+.note-detail-title { font-size: 36rpx; font-weight: 600; margin-bottom: 12rpx; display: block; }
+.note-meta { color: #7F8C8D; font-size: 24rpx; margin-bottom: 12rpx; }
+.note-tags { display: flex; gap: 10rpx; flex-wrap: wrap; margin-bottom: 16rpx; }
+.note-desc { font-size: 28rpx; color: #555; line-height: 1.6; }
+.file-section { background: #fff; padding: 24rpx; margin: 0 0 16rpx; }
+.file-item { display: flex; align-items: center; justify-content: space-between; padding: 16rpx 0; border-bottom: 2rpx solid #F5F3F0; }
+.file-item:last-child { border-bottom: none; }
+.file-name { flex: 1; font-size: 26rpx; color: #2D3436; margin-right: 16rpx; }
+.download-btn { color: #3C8D6E; font-size: 26rpx; font-weight: 500; }
+.rating-section { background: #fff; padding: 24rpx; margin-bottom: 140rpx; }
+.rating-item { padding: 16rpx 0; border-bottom: 2rpx solid #F5F3F0; }
+.rating-item:last-child { border-bottom: none; }
+.rating-user { font-size: 26rpx; font-weight: 500; }
+.rating-score { color: #C9A96E; font-size: 24rpx; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 16rpx 30rpx; display: flex; align-items: center; box-shadow: 0 -2rpx 12rpx rgba(45,52,54,0.06); padding-bottom: calc(16rpx + env(safe-area-inset-bottom)); }
+.bar-fav { padding: 16rpx 24rpx; }
+.bar-action { display: flex; flex-direction: column; align-items: center; padding: 8rpx 24rpx; }
+.bar-action-text { font-size: 20rpx; color: #7F8C8D; margin-top: 4rpx; }
+.bar-contact { flex: 1; background: linear-gradient(135deg, #3C8D6E, #2E7A5E); color: #fff; text-align: center; border-radius: 40rpx; padding: 20rpx 0; font-size: 30rpx; font-weight: 500; margin-left: 20rpx; }

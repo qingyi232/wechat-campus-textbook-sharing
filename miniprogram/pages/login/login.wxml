@@ -1,0 +1,51 @@
+<view class="login-page">
+  <!-- 顶部品牌区 -->
+  <view class="header-area">
+    <view class="logo-wrap">
+      <image class="logo" src="/images/icon-logo.png" mode="aspectFit" />
+    </view>
+    <text class="app-title">校园教材共享平台</text>
+    <text class="app-subtitle">二手教材流转 · 学习笔记共享</text>
+  </view>
+
+  <!-- 登录表单卡片 -->
+  <view class="login-card">
+    <view class="form-item">
+      <text class="label">账号</text>
+      <input placeholder="请输入账号" value="{{username}}" bindinput="onUsernameInput" />
+    </view>
+    <view class="form-item">
+      <text class="label">密码</text>
+      <input placeholder="请输入密码" password="true" value="{{password}}" bindinput="onPasswordInput" />
+    </view>
+    <button class="btn-login" bindtap="handleLogin" loading="{{loading}}">登录</button>
+    <view class="register-row">
+      <text class="register-text" bindtap="goRegister">没有账号？立即注册</text>
+    </view>
+  </view>
+
+  <!-- 演示账号 -->
+  <view class="demo-area">
+    <text class="demo-title">快速体验（密码: 123456）</text>
+    <view class="demo-list">
+      <view class="demo-item" bindtap="fillDemo" data-username="student_cheng">
+        <view class="demo-icon student-bg">
+          <image class="demo-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%233C8D6E' d='M12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3Cpath fill='%232E7A5E' d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z'/%3E%3C/svg%3E" mode="aspectFit" />
+        </view>
+        <text class="demo-name">学生-程旭</text>
+      </view>
+      <view class="demo-item" bindtap="fillDemo" data-username="teacher_zhang">
+        <view class="demo-icon teacher-bg">
+          <image class="demo-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%232196F3' d='M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z'/%3E%3C/svg%3E" mode="aspectFit" />
+        </view>
+        <text class="demo-name">教师-张教授</text>
+      </view>
+      <view class="demo-item" bindtap="fillDemo" data-username="admin">
+        <view class="demo-icon admin-bg">
+          <image class="demo-svg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%239C27B0' d='M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z'/%3E%3C/svg%3E" mode="aspectFit" />
+        </view>
+        <text class="demo-name">管理员</text>
+      </view>
+    </view>
+  </view>
+</view>

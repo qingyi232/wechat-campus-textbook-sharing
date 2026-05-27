@@ -1,0 +1,84 @@
+================================================
+  笔记审核完善 + 通知发布功能 - 补丁部署说明
+================================================
+
+【更新内容】
+1. 教师端新增"驳回"笔记功能（填写驳回理由 + 发通知给上传者）
+2. 教师端新增"发布通知"功能（填写标题/内容/选择课程 → 推送给学生）
+3. 推荐笔记时自动加500热度 + 发通知给上传者
+4. 学生端首页通知图标增加未读红点提示
+
+【文件覆盖说明】
+请将 patch-update 文件夹中的文件，按以下路径覆盖到项目对应位置：
+
+────────────────────────────────────────
+后端文件（需要重新编译部署）
+────────────────────────────────────────
+
+1. TeacherController.java
+   补丁位置: patch-update\backend\src\main\java\com\textbook\controller\TeacherController.java
+   覆盖到:   项目根目录\backend\src\main\java\com\textbook\controller\TeacherController.java
+   改动说明: 新增 rejectNote 驳回接口 + publishNotice 通知发布接口
+
+2. NotificationService.java
+   补丁位置: patch-update\backend\src\main\java\com\textbook\service\NotificationService.java
+   覆盖到:   项目根目录\backend\src\main\java\com\textbook\service\NotificationService.java
+   改动说明: 新增 broadcastByCourse 广播通知方法
+
+────────────────────────────────────────
+小程序端文件（微信开发者工具重新上传）
+────────────────────────────────────────
+
+3. teacher.wxml
+   补丁位置: patch-update\miniprogram\pages\teacher\teacher.wxml
+   覆盖到:   项目根目录\miniprogram\pages\teacher\teacher.wxml
+   改动说明: 新增"驳回"按钮 + 新增"发布通知"表单卡片
+
+4. teacher.js
+   补丁位置: patch-update\miniprogram\pages\teacher\teacher.js
+   覆盖到:   项目根目录\miniprogram\pages\teacher\teacher.js
+   改动说明: 新增 rejectNote/publishNotice 等方法
+
+5. teacher.wxss
+   补丁位置: patch-update\miniprogram\pages\teacher\teacher.wxss
+   覆盖到:   项目根目录\miniprogram\pages\teacher\teacher.wxss
+   改动说明: 新增通知表单样式
+
+6. api.js
+   补丁位置: patch-update\miniprogram\utils\api.js
+   覆盖到:   项目根目录\miniprogram\utils\api.js
+   改动说明: teacherApi 新增 rejectNote + publishNotice 接口
+
+7. index.js
+   补丁位置: patch-update\miniprogram\pages\index\index.js
+   覆盖到:   项目根目录\miniprogram\pages\index\index.js
+   改动说明: 新增 loadUnread() 方法获取未读通知数
+
+8. index.wxml
+   补丁位置: patch-update\miniprogram\pages\index\index.wxml
+   覆盖到:   项目根目录\miniprogram\pages\index\index.wxml
+   改动说明: 通知图标增加红色未读数字徽章
+
+9. index.wxss
+   补丁位置: patch-update\miniprogram\pages\index\index.wxss
+   覆盖到:   项目根目录\miniprogram\pages\index\index.wxss
+   改动说明: 新增 .unread-badge 红点样式
+
+────────────────────────────────────────
+部署步骤
+────────────────────────────────────────
+
+步骤1: 后端部署
+  a) 将文件1、2覆盖到后端项目对应路径
+  b) 重新编译后端项目: mvn clean package -DskipTests
+  c) 重启后端服务（替换jar包后重启）
+
+步骤2: 小程序部署
+  a) 将文件3~9覆盖到小程序项目对应路径
+  b) 打开微信开发者工具，编译确认无报错
+  c) 上传代码并提交审核（或发布体验版测试）
+
+【注意事项】
+- 无需修改数据库，所有改动基于现有表结构
+- 后端必须先部署，否则小程序调新接口会报404
+- 覆盖前建议备份原文件

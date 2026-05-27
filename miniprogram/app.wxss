@@ -1,0 +1,22 @@
+page { background: #F7F5F2; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; color: #2D3436; font-size: 28rpx; }
+.container { padding: 24rpx; }
+.card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; box-shadow: 0 2rpx 12rpx rgba(45,52,54,0.04); }
+.btn-primary { background: linear-gradient(135deg, #3C8D6E, #2E7A5E); color: #fff; border-radius: 44rpx; padding: 20rpx 0; text-align: center; font-size: 30rpx; font-weight: 500; }
+.btn-outline { border: 2rpx solid #3C8D6E; color: #3C8D6E; border-radius: 44rpx; padding: 18rpx 0; text-align: center; font-size: 28rpx; background: transparent; }
+.section-title { font-size: 32rpx; font-weight: 600; color: #2D3436; margin-bottom: 20rpx; }
+.tag { display: inline-block; padding: 6rpx 16rpx; border-radius: 6rpx; font-size: 22rpx; margin-right: 10rpx; }
+.tag-green { background: #EBF5F0; color: #3C8D6E; }
+.tag-gold { background: #FFF8ED; color: #C9A96E; }
+.tag-orange { background: #FFF3E0; color: #D4875C; }
+.tag-red { background: #FBE9E7; color: #CF5C3F; }
+.price { color: #CF5C3F; font-weight: 700; font-size: 34rpx; }
+.price::before { content: '¥'; font-size: 24rpx; }
+.text-gray { color: #7F8C8D; font-size: 24rpx; }
+.text-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+
+.svg-icon { width: 44rpx; height: 44rpx; }
+.svg-icon-sm { width: 36rpx; height: 36rpx; }
+.svg-icon-lg { width: 56rpx; height: 56rpx; }

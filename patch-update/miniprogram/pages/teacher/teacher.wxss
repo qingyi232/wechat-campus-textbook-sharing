@@ -1,0 +1,36 @@
+.course-item { display: flex; justify-content: space-between; align-items: center; padding: 20rpx 0; border-bottom: 2rpx solid #F5F3F0; }
+.course-item:last-child { border-bottom: none; }
+.course-left { flex: 1; overflow: hidden; }
+.course-name { font-size: 28rpx; font-weight: 600; color: #2D3436; display: block; margin-bottom: 6rpx; }
+
+.add-link { font-size: 26rpx; color: #3C8D6E; font-weight: 500; }
+
+.rec-item { display: flex; justify-content: space-between; align-items: center; padding: 20rpx 0; border-bottom: 2rpx solid #F5F3F0; }
+.rec-item:last-child { border-bottom: none; }
+.rec-body { flex: 1; overflow: hidden; }
+.rec-title { font-size: 28rpx; font-weight: 500; color: #2D3436; display: block; margin-bottom: 6rpx; }
+.rec-reason { font-size: 24rpx; color: #7F8C8D; margin-top: 6rpx; display: block; font-style: italic; }
+
+.review-item { display: flex; justify-content: space-between; align-items: center; padding: 20rpx 0; border-bottom: 2rpx solid #F5F3F0; }
+.review-item:last-child { border-bottom: none; }
+.review-body { flex: 1; overflow: hidden; }
+.review-title { font-size: 28rpx; font-weight: 500; color: #2D3436; display: block; margin-bottom: 6rpx; }
+.review-tags { display: flex; gap: 8rpx; margin-top: 6rpx; }
+.mini-tag { font-size: 20rpx; padding: 2rpx 12rpx; border-radius: 16rpx; background: #F0F0F0; color: #666; }
+.review-ops { display: flex; gap: 12rpx; flex-shrink: 0; }
+
+.op-btn { font-size: 24rpx; padding: 8rpx 20rpx; border-radius: 24rpx; font-weight: 500; }
+.op-primary { background: #EBF5F0; color: #3C8D6E; }
+.op-gold { background: #FFF8ED; color: #C9A96E; }
+.op-danger { background: #FBE9E7; color: #CF5C3F; }
+
+.empty { text-align: center; color: #B0B8BD; padding: 40rpx 0; font-size: 26rpx; }
+
+.notice-form { padding: 10rpx 0; }
+.form-item { margin-bottom: 24rpx; }
+.form-label { font-size: 26rpx; color: #666; display: block; margin-bottom: 10rpx; }
+.form-input { width: 100%; height: 72rpx; border: 2rpx solid #E8E6E3; border-radius: 12rpx; padding: 0 20rpx; font-size: 28rpx; box-sizing: border-box; background: #FAFAFA; }
+.form-textarea { width: 100%; height: 180rpx; border: 2rpx solid #E8E6E3; border-radius: 12rpx; padding: 16rpx 20rpx; font-size: 28rpx; box-sizing: border-box; background: #FAFAFA; }
+.picker-value { height: 72rpx; line-height: 72rpx; border: 2rpx solid #E8E6E3; border-radius: 12rpx; padding: 0 20rpx; font-size: 28rpx; background: #FAFAFA; color: #333; }
+.form-btn-row { display: flex; justify-content: center; margin-top: 20rpx; }
+.publish-btn { display: inline-block; background: #3C8D6E; color: #fff; font-size: 28rpx; font-weight: 600; padding: 16rpx 80rpx; border-radius: 40rpx; text-align: center; }

@@ -1,0 +1,23 @@
+.container { padding: 20rpx; background: #f5f5f5; min-height: 100vh; }
+.tab-bar { display: flex; background: #fff; border-radius: 16rpx; margin-bottom: 20rpx; overflow: hidden; }
+.tab-item { flex: 1; text-align: center; padding: 24rpx 0; font-size: 28rpx; color: #666; position: relative; }
+.tab-item.active { color: #3C8D6E; font-weight: bold; }
+.tab-item.active::after { content: ''; position: absolute; bottom: 0; left: 30%; right: 30%; height: 4rpx; background: #3C8D6E; border-radius: 2rpx; }
+.status-filter { display: flex; gap: 12rpx; margin-bottom: 20rpx; flex-wrap: wrap; }
+.filter-tag { font-size: 24rpx; padding: 8rpx 24rpx; background: #fff; border-radius: 30rpx; color: #666; }
+.filter-tag.active { background: #3C8D6E; color: #fff; }
+.item-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 16rpx; }
+.item-title { font-size: 30rpx; font-weight: bold; color: #333; margin-bottom: 12rpx; }
+.item-meta { font-size: 24rpx; color: #888; margin-bottom: 8rpx; display: flex; justify-content: space-between; align-items: center; }
+.status-tag { font-size: 22rpx; padding: 4rpx 14rpx; border-radius: 16rpx; }
+.status-REVIEWING { background: #fff3e0; color: #e65100; }
+.status-ON_SALE, .status-PUBLISHED { background: #e8f5e9; color: #2e7d32; }
+.status-REJECTED { background: #ffebee; color: #c62828; }
+.status-SOLD { background: #e3f2fd; color: #1565c0; }
+.status-PENDING { background: #fff3e0; color: #e65100; }
+.status-HANDLED { background: #e8f5e9; color: #2e7d32; }
+.audit-actions { display: flex; gap: 16rpx; margin-top: 16rpx; justify-content: flex-end; }
+.action-btn { font-size: 26rpx; padding: 10rpx 32rpx; border-radius: 24rpx; }
+.btn-pass { background: #e8f5e9; color: #2e7d32; }
+.btn-reject { background: #ffebee; color: #c62828; }
+.empty, .loading { text-align: center; padding: 60rpx; color: #999; font-size: 28rpx; }

@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="notice-card {{item.isRead ? 'read' : ''}}" wx:for="{{list}}" wx:key="id" bindtap="markRead" data-id="{{item.id}}">
+    <view class="notice-top">
+      <text class="notice-type {{typeClass[item.type] || 'type-system'}}">{{typeMap[item.type] || '系统'}}</text>
+      <text class="notice-time">{{item.createTime}}</text>
+    </view>
+    <text class="notice-title">{{item.title}}</text>
+    <text class="notice-content">{{item.content}}</text>
+    <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!list.length}}">
+    <image class="empty-icon" src="/images/icon-bell.png" mode="aspectFit" />
+    <text class="empty-text">暂无通知消息</text>
+  </view>
+</view>

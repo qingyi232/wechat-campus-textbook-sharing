@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="section-title">用户统计</view>
+  <view class="stat-grid">
+    <view class="stat-card">
+      <text class="stat-num">{{stats.userCount || 0}}</text>
+      <text class="stat-label">总用户数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num">{{stats.studentCount || 0}}</text>
+      <text class="stat-label">学生数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num">{{stats.teacherCount || 0}}</text>
+      <text class="stat-label">教师数</text>
+    </view>
+  </view>
+
+  <view class="section-title">教材统计</view>
+  <view class="stat-grid">
+    <view class="stat-card card-blue">
+      <text class="stat-num">{{stats.textbookCount || 0}}</text>
+      <text class="stat-label">总教材数</text>
+    </view>
+    <view class="stat-card card-blue">
+      <text class="stat-num">{{stats.textbookOnSale || 0}}</text>
+      <text class="stat-label">在售</text>
+    </view>
+    <view class="stat-card card-blue">
+      <text class="stat-num">{{stats.textbookSold || 0}}</text>
+      <text class="stat-label">已售</text>
+    </view>
+  </view>
+
+  <view class="section-title">笔记统计</view>
+  <view class="stat-grid">
+    <view class="stat-card card-orange">
+      <text class="stat-num">{{stats.noteCount || 0}}</text>
+      <text class="stat-label">总笔记数</text>
+    </view>
+    <view class="stat-card card-orange">
+      <text class="stat-num">{{stats.notePublished || 0}}</text>
+      <text class="stat-label">已发布</text>
+    </view>
+    <view class="stat-card card-orange">
+      <text class="stat-num">{{stats.noteReviewing || 0}}</text>
+      <text class="stat-label">待审核</text>
+    </view>
+  </view>
+
+  <view class="section-title">待处理事项</view>
+  <view class="pending-list">
+    <view class="pending-item">
+      <view class="pending-icon warn">!</view>
+      <text class="pending-text">待处理举报</text>
+      <text class="pending-count">{{stats.pendingReports || 0}}</text>
+    </view>
+    <view class="pending-item">
+      <view class="pending-icon info">?</view>
+      <text class="pending-text">待回复反馈</text>
+      <text class="pending-count">{{stats.pendingFeedback || 0}}</text>
+    </view>
+  </view>
+
+  <view class="refresh-btn" bindtap="loadStats">刷新数据</view>
+</view>

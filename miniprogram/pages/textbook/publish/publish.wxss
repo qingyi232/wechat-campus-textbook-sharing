@@ -1,0 +1,8 @@
+.form-item { display: flex; align-items: flex-start; border-bottom: 2rpx solid #F5F3F0; padding: 20rpx 0; }
+.form-item .label { width: 150rpx; font-size: 28rpx; color: #7F8C8D; flex-shrink: 0; padding-top: 6rpx; }
+.form-item input, .form-item picker, .form-item textarea { flex: 1; font-size: 28rpx; }
+.img-upload { margin-top: 20rpx; }
+.img-upload .label { font-size: 28rpx; color: #7F8C8D; display: block; margin-bottom: 16rpx; }
+.img-list { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.up-img { width: 160rpx; height: 160rpx; border-radius: 12rpx; }
+.add-img { width: 160rpx; height: 160rpx; border: 2rpx dashed #D5D0CA; border-radius: 12rpx; display: flex; align-items: center; justify-content: center; font-size: 56rpx; color: #bbb; }

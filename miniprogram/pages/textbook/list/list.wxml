@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="filter-bar">
+    <picker range="{{majors}}" range-key="majorName" bindchange="onMajorFilter">
+      <text class="filter-btn">{{selectedMajor || '全部专业'}} ▼</text>
+    </picker>
+    <picker range="{{conditions}}" range-key="label" bindchange="onConditionFilter">
+      <text class="filter-btn">{{selectedCondition || '成色'}} ▼</text>
+    </picker>
+    <picker range="{{sortOptions}}" range-key="label" bindchange="onSortChange">
+      <text class="filter-btn">{{selectedSort || '排序'}} ▼</text>
+    </picker>
+  </view>
+
+  <view class="textbook-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <image class="tb-img" src="{{item.images[0] || '/images/default-book.png'}}" mode="aspectFill" />
+    <view class="tb-info">
+      <text class="tb-title text-ellipsis">{{item.title}}</text>
+      <text class="text-gray">{{item.author}} · {{item.publisher}}</text>
+      <view class="tb-tags">
+        <text class="tag tag-green">{{item.courseName || '通用'}}</text>
+        <text class="tag tag-orange">{{conditionMap[item.bookCondition] || item.bookCondition}}</text>
+      </view>
+      <view class="flex-between" style="margin-top:8rpx">
+        <text class="price">{{item.price}}</text>
+        <text class="text-gray">浏览{{item.viewCount}} · 收藏{{item.favoriteCount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!list.length && !loading}}">暂无教材信息</view>
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+</view>

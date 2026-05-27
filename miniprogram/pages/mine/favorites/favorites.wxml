@@ -1,0 +1,37 @@
+<view class="container" style="padding-top:0">
+  <view class="tab-bar">
+    <text class="tab {{tab === 'textbook' ? 'active' : ''}}" bindtap="switchTab" data-tab="textbook">教材收藏</text>
+    <text class="tab {{tab === 'note' ? 'active' : ''}}" bindtap="switchTab" data-tab="note">笔记收藏</text>
+  </view>
+
+  <view class="fav-list">
+    <block wx:if="{{tab === 'textbook'}}">
+      <view class="fav-card" wx:for="{{textbooks}}" wx:key="id" bindtap="goTextbook" data-id="{{item.id}}">
+        <view class="fav-body">
+          <text class="fav-title">{{item.title}}</text>
+          <text class="fav-meta">{{item.author}} · {{item.publisher || ''}}</text>
+        </view>
+        <text class="fav-price">{{item.price}}</text>
+      </view>
+      <view class="empty-state" wx:if="{{!textbooks.length}}">
+        <image class="empty-icon" src="/images/icon-star.png" mode="aspectFit" />
+        <text class="empty-text">暂无收藏的教材</text>
+      </view>
+    </block>
+
+    <block wx:if="{{tab === 'note'}}">
+      <view class="fav-card" wx:for="{{notes}}" wx:key="id" bindtap="goNote" data-id="{{item.id}}">
+        <view class="fav-body">
+          <text class="fav-title">{{item.title}}</text>
+          <text class="fav-meta">评分 {{item.avgRating || '-'}} · {{item.downloadCount || 0}}次下载</text>
+        </view>
+        <text class="fav-free" wx:if="{{item.isFree}}">免费</text>
+        <text class="fav-price" wx:else>{{item.price}}</text>
+      </view>
+      <view class="empty-state" wx:if="{{!notes.length}}">
+        <image class="empty-icon" src="/images/icon-star.png" mode="aspectFit" />
+        <text class="empty-text">暂无收藏的笔记</text>
+      </view>
+    </block>
+  </view>
+</view>

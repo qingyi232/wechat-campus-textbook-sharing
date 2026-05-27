@@ -1,0 +1,15 @@
+.notice-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 16rpx; position: relative; box-shadow: 0 2rpx 12rpx rgba(45,52,54,0.05); }
+.notice-card.read { opacity: 0.6; }
+.notice-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.notice-type { font-size: 22rpx; padding: 4rpx 14rpx; border-radius: 20rpx; font-weight: 500; }
+.type-system { background: #E8F4FD; color: #2196F3; }
+.type-borrow { background: #EBF5F0; color: #3C8D6E; }
+.type-audit { background: #FFF8ED; color: #C9A96E; }
+.notice-time { font-size: 22rpx; color: #B0B8BD; }
+.notice-title { font-size: 30rpx; font-weight: 600; color: #2D3436; display: block; margin-bottom: 8rpx; }
+.notice-content { font-size: 26rpx; display: block; line-height: 1.6; color: #666; }
+.unread-dot { position: absolute; top: 24rpx; right: 24rpx; width: 16rpx; height: 16rpx; background: #CF5C3F; border-radius: 50%; box-shadow: 0 0 8rpx rgba(207,92,63,0.4); }
+
+.empty-state { text-align: center; padding: 120rpx 0; }
+.empty-icon { width: 100rpx; height: 100rpx; opacity: 0.4; margin-bottom: 20rpx; }
+.empty-text { display: block; font-size: 28rpx; color: #7F8C8D; }

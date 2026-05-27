@@ -1,0 +1,10 @@
+.form-item { display: flex; align-items: flex-start; border-bottom: 2rpx solid #F5F3F0; padding: 20rpx 0; }
+.form-item .label { width: 150rpx; font-size: 28rpx; color: #7F8C8D; flex-shrink: 0; padding-top: 6rpx; }
+.form-item input, .form-item picker, .form-item textarea { flex: 1; font-size: 28rpx; }
+.upload-section { margin-top: 20rpx; }
+.upload-section .label { font-size: 28rpx; color: #7F8C8D; display: block; margin-bottom: 12rpx; }
+.uploaded-file { display: flex; align-items: center; gap: 12rpx; padding: 12rpx 0; }
+.file-icon { width: 36rpx; height: 36rpx; }
+.file-name { font-size: 26rpx; color: #2D3436; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-size { font-size: 22rpx; color: #95A5A6; flex-shrink: 0; }
+.file-remove { font-size: 28rpx; color: #E74C3C; padding: 0 12rpx; flex-shrink: 0; }

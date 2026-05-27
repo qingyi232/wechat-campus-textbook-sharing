@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-count">共 {{list.length}} 本教材</text>
+  </view>
+
+  <view class="tb-card" wx:for="{{list}}" wx:key="id">
+    <image class="tb-cover" src="{{item.images[0] || '/images/icon-publish.png'}}" mode="aspectFill" />
+    <view class="tb-body">
+      <view class="tb-top">
+        <text class="tb-name">{{item.title}}</text>
+        <text class="status-badge {{item.status === 'ON_SALE' ? 'badge-green' : item.status === 'SOLD' ? 'badge-gray' : 'badge-orange'}}">{{statusMap[item.status]}}</text>
+      </view>
+      <text class="tb-author">{{item.author}} · {{item.publisher || ''}}</text>
+      <view class="tb-bottom">
+        <text class="tb-price">{{item.price}}</text>
+        <view class="tb-ops">
+          <text class="op-btn op-primary" wx:if="{{item.status === 'ON_SALE'}}" bindtap="markSold" data-id="{{item.id}}">标为已售</text>
+          <text class="op-btn op-danger" bindtap="deleteItem" data-id="{{item.id}}">删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!list.length}}">
+    <image class="empty-icon" src="/images/icon-publish.png" mode="aspectFit" />
+    <text class="empty-text">暂无发布的教材</text>
+    <text class="empty-sub">点击首页「发布教材」开始出售</text>
+  </view>
+</view>

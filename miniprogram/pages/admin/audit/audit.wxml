@@ -1,0 +1,82 @@
+<view class="container">
+  <view class="tab-bar">
+    <view class="tab-item {{tab==='textbook'?'active':''}}" bindtap="switchTab" data-tab="textbook">教材审核</view>
+    <view class="tab-item {{tab==='note'?'active':''}}" bindtap="switchTab" data-tab="note">笔记审核</view>
+    <view class="tab-item {{tab==='report'?'active':''}}" bindtap="switchTab" data-tab="report">举报处理</view>
+  </view>
+
+  <!-- 教材审核 -->
+  <block wx:if="{{tab === 'textbook'}}">
+    <view class="status-filter">
+      <view class="filter-tag {{textbookStatus===''?'active':''}}" bindtap="filterTextbook" data-status="">全部</view>
+      <view class="filter-tag {{textbookStatus==='REVIEWING'?'active':''}}" bindtap="filterTextbook" data-status="REVIEWING">待审核</view>
+      <view class="filter-tag {{textbookStatus==='ON_SALE'?'active':''}}" bindtap="filterTextbook" data-status="ON_SALE">已通过</view>
+      <view class="filter-tag {{textbookStatus==='REJECTED'?'active':''}}" bindtap="filterTextbook" data-status="REJECTED">已拒绝</view>
+    </view>
+    <view class="item-card" wx:for="{{textbooks}}" wx:key="id">
+      <view class="item-title">{{item.title}}</view>
+      <view class="item-meta">
+        <text>ISBN: {{item.isbn || '无'}}</text>
+        <text>价格: ¥{{item.price}}</text>
+      </view>
+      <view class="item-meta">
+        <text>发布者: {{item.publisherName || '未知'}}</text>
+        <text class="status-tag status-{{item.status}}">{{statusMap[item.status] || item.status}}</text>
+      </view>
+      <view class="audit-actions" wx:if="{{item.status === 'REVIEWING'}}">
+        <view class="action-btn btn-pass" bindtap="auditTextbook" data-id="{{item.id}}" data-status="ON_SALE">通过</view>
+        <view class="action-btn btn-reject" bindtap="auditTextbook" data-id="{{item.id}}" data-status="REJECTED">拒绝</view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!loading && textbooks.length === 0}}"><text>暂无数据</text></view>
+  </block>
+
+  <!-- 笔记审核 -->
+  <block wx:if="{{tab === 'note'}}">
+    <view class="status-filter">
+      <view class="filter-tag {{noteStatus===''?'active':''}}" bindtap="filterNote" data-status="">全部</view>
+      <view class="filter-tag {{noteStatus==='REVIEWING'?'active':''}}" bindtap="filterNote" data-status="REVIEWING">待审核</view>
+      <view class="filter-tag {{noteStatus==='PUBLISHED'?'active':''}}" bindtap="filterNote" data-status="PUBLISHED">已发布</view>
+      <view class="filter-tag {{noteStatus==='REJECTED'?'active':''}}" bindtap="filterNote" data-status="REJECTED">已拒绝</view>
+    </view>
+    <view class="item-card" wx:for="{{notes}}" wx:key="id">
+      <view class="item-title">{{item.title}}</view>
+      <view class="item-meta">
+        <text>科目: {{item.subject || '未知'}}</text>
+        <text>上传者: {{item.uploaderName || '未知'}}</text>
+      </view>
+      <view class="item-meta">
+        <text class="status-tag status-{{item.status}}">{{statusMap[item.status] || item.status}}</text>
+      </view>
+      <view class="audit-actions" wx:if="{{item.status === 'REVIEWING'}}">
+        <view class="action-btn btn-pass" bindtap="auditNote" data-id="{{item.id}}" data-status="PUBLISHED">通过</view>
+        <view class="action-btn btn-reject" bindtap="auditNote" data-id="{{item.id}}" data-status="REJECTED">拒绝</view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!loading && notes.length === 0}}"><text>暂无数据</text></view>
+  </block>
+
+  <!-- 举报处理 -->
+  <block wx:if="{{tab === 'report'}}">
+    <view class="status-filter">
+      <view class="filter-tag {{reportStatus===''?'active':''}}" bindtap="filterReport" data-status="">全部</view>
+      <view class="filter-tag {{reportStatus==='PENDING'?'active':''}}" bindtap="filterReport" data-status="PENDING">待处理</view>
+      <view class="filter-tag {{reportStatus==='HANDLED'?'active':''}}" bindtap="filterReport" data-status="HANDLED">已处理</view>
+    </view>
+    <view class="item-card" wx:for="{{reports}}" wx:key="id">
+      <view class="item-title">举报原因: {{item.reason || '无'}}</view>
+      <view class="item-meta">
+        <text>举报内容: {{item.content || '无描述'}}</text>
+      </view>
+      <view class="item-meta">
+        <text class="status-tag status-{{item.status}}">{{item.status === 'PENDING' ? '待处理' : '已处理'}}</text>
+      </view>
+      <view class="audit-actions" wx:if="{{item.status === 'PENDING'}}">
+        <view class="action-btn btn-pass" bindtap="handleReport" data-id="{{item.id}}" data-status="HANDLED">标记已处理</view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{!loading && reports.length === 0}}"><text>暂无举报</text></view>
+  </block>
+
+  <view class="loading" wx:if="{{loading}}"><text>加载中...</text></view>
+</view>

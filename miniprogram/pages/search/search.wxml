@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="search-header">
+    <input class="search-input" placeholder="搜索教材名称、作者、笔记..." value="{{keyword}}" bindinput="onInput" bindconfirm="doSearch" focus />
+    <text class="search-btn" bindtap="doSearch">搜索</text>
+  </view>
+
+  <view class="tab-bar">
+    <text class="tab {{tab === 'textbook' ? 'active' : ''}}" bindtap="switchTab" data-tab="textbook">教材</text>
+    <text class="tab {{tab === 'note' ? 'active' : ''}}" bindtap="switchTab" data-tab="note">笔记</text>
+  </view>
+
+  <view class="result-list">
+    <block wx:if="{{tab === 'textbook'}}">
+      <view class="result-card card" wx:for="{{textbooks}}" wx:key="id" bindtap="goTextbook" data-id="{{item.id}}">
+        <text class="result-title">{{item.title}}</text>
+        <text class="text-gray">{{item.author}} · {{item.publisher}}</text>
+        <view class="flex-between" style="margin-top:8rpx">
+          <text class="price">{{item.price}}</text>
+          <text class="tag tag-green">{{item.courseName || '通用'}}</text>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{tab === 'note'}}">
+      <view class="result-card card" wx:for="{{notes}}" wx:key="id" bindtap="goNote" data-id="{{item.id}}">
+        <text class="result-title">{{item.title}}</text>
+        <text class="text-gray">{{item.authorName}} · {{item.courseName || '通用'}}</text>
+        <view class="flex-between" style="margin-top:8rpx">
+          <text class="text-gray">评分 {{item.avgRating}} · {{item.downloadCount}}次下载</text>
+          <text wx:if="{{item.isFree}}" style="color:#3C8D6E;font-weight:500">免费</text>
+          <text wx:else class="price">{{item.price}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-tip" wx:if="{{searched && !textbooks.length && !notes.length}}">未找到相关内容</view>
+  </view>
+</view>

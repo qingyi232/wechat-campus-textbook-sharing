@@ -1,0 +1,23 @@
+<view class="chat-container">
+  <view class="chat-header" wx:if="{{textbookTitle}}">
+    <text class="chat-about">关于教材：{{textbookTitle}}</text>
+  </view>
+
+  <scroll-view scroll-y class="chat-body" scroll-into-view="{{scrollTo}}" enhanced show-scrollbar="{{false}}">
+    <view class="chat-msg {{item.isMine ? 'mine' : 'other'}}" wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+      <text class="msg-name" wx:if="{{!item.isMine}}">{{targetName}}</text>
+      <view class="msg-bubble {{item.isMine ? 'bubble-mine' : 'bubble-other'}}">
+        <text>{{item.content}}</text>
+      </view>
+      <text class="msg-time">{{item.timeStr}}</text>
+    </view>
+    <view wx:if="{{messages.length === 0}}" class="empty-tip">
+      <text>暂无消息，发送第一条消息开始对话</text>
+    </view>
+  </scroll-view>
+
+  <view class="chat-input-bar">
+    <input class="chat-input" placeholder="输入消息..." value="{{inputText}}" bindinput="onInput" confirm-type="send" bindconfirm="sendMsg" />
+    <view class="send-btn" bindtap="sendMsg">发送</view>
+  </view>
+</view>

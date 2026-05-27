@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="filter-bar">
+    <text class="filter-btn {{tab === '' ? 'active' : ''}}" bindtap="setTab" data-tab="">全部</text>
+    <text class="filter-btn {{tab === 'recommended' ? 'active' : ''}}" bindtap="setTab" data-tab="recommended">教师推荐</text>
+    <text class="filter-btn {{tab === 'free' ? 'active' : ''}}" bindtap="setTab" data-tab="free">免费</text>
+    <text class="filter-btn {{tab === 'rating' ? 'active' : ''}}" bindtap="setTab" data-tab="rating">高分</text>
+  </view>
+
+  <view class="note-list">
+    <view class="note-item" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <text class="note-item-title">{{item.title}}</text>
+      <text class="text-gray note-item-meta text-ellipsis">{{item.description || '暂无描述'}}</text>
+      <view style="display:flex;gap:8rpx;flex-wrap:wrap;margin:8rpx 0">
+        <text class="tag tag-green">{{item.courseName || '通用'}}</text>
+        <text class="tag tag-gold" wx:if="{{item.isRecommended}}">教师推荐</text>
+        <text class="tag tag-orange" wx:if="{{!item.isFree}}">付费</text>
+      </view>
+      <view class="note-item-bottom">
+        <text class="note-item-stats">{{item.authorName}} · 评分{{item.avgRating}} · {{item.downloadCount}}次下载</text>
+        <text class="note-free-tag" wx:if="{{item.isFree}}">免费</text>
+        <text class="price" wx:else>{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{!list.length && !loading}}">暂无笔记</view>
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+</view>

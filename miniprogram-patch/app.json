@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/index/index",
+    "pages/textbook/list/list",
+    "pages/textbook/detail/detail",
+    "pages/textbook/publish/publish",
+    "pages/note/list/list",
+    "pages/note/detail/detail",
+    "pages/note/upload/upload",
+    "pages/search/search",
+    "pages/mine/mine",
+    "pages/mine/textbooks/textbooks",
+    "pages/mine/notes/notes",
+    "pages/mine/favorites/favorites",
+    "pages/notice/notice",
+    "pages/notice/chat/chat",
+    "pages/teacher/teacher",
+    "pages/admin/users/users",
+    "pages/admin/audit/audit",
+    "pages/admin/stats/stats"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#3C8D6E",
+    "navigationBarTitleText": "校园教材共享",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F7F5F2",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#3C8D6E",
+    "backgroundColor": "#fff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/textbook/list/list",
+        "text": "教材",
+        "iconPath": "images/tab-book.png",
+        "selectedIconPath": "images/tab-book-active.png"
+      },
+      {
+        "pagePath": "pages/note/list/list",
+        "text": "笔记",
+        "iconPath": "images/tab-note.png",
+        "selectedIconPath": "images/tab-note-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

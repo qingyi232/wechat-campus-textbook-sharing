@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-count">共 {{list.length}} 篇笔记</text>
+  </view>
+
+  <view class="note-card" wx:for="{{list}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <view class="note-top">
+      <text class="note-title">{{item.title}}</text>
+      <text class="status-badge {{item.status === 'PUBLISHED' ? 'badge-green' : item.status === 'REVIEWING' ? 'badge-orange' : 'badge-red'}}">{{statusMap[item.status]}}</text>
+    </view>
+    <text class="note-course">{{item.courseName || '通用'}}</text>
+    <view class="note-bottom">
+      <view class="note-stats">
+        <text class="stat-item">评分 {{item.avgRating || '-'}}</text>
+        <text class="stat-item">下载 {{item.downloadCount || 0}}</text>
+        <text class="stat-item">收藏 {{item.favoriteCount || 0}}</text>
+      </view>
+      <text class="note-price" wx:if="{{!item.isFree}}">¥{{item.price}}</text>
+      <text class="note-free" wx:else>免费</text>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{!list.length}}">
+    <image class="empty-icon" src="/images/icon-upload.png" mode="aspectFit" />
+    <text class="empty-text">暂无上传的笔记</text>
+    <text class="empty-sub">点击首页「上传笔记」开始分享</text>
+  </view>
+</view>

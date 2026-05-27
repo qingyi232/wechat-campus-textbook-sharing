@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.textbook.mapper.StudyNoteMapper">
+
+    <select id="selectNotePage" resultType="com.textbook.entity.StudyNote">
+        SELECT n.*, u.real_name AS author_name, c.course_name, m.major_name,
+               t.real_name AS recommend_teacher_name
+        FROM study_note n
+        LEFT JOIN sys_user u ON n.author_id = u.id
+        LEFT JOIN sys_course c ON n.course_id = c.id
+        LEFT JOIN sys_major m ON n.major_id = m.id
+        LEFT JOIN sys_user t ON n.recommend_teacher_id = t.id
+        WHERE n.deleted = 0
+        <if test="keyword != null and keyword != ''">
+            AND (n.title LIKE CONCAT('%',#{keyword},'%') OR n.description LIKE CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test="courseId != null">AND n.course_id = #{courseId}</if>
+        <if test="majorId != null">AND n.major_id = #{majorId}</if>
+        <if test="grade != null and grade != ''">AND n.grade = #{grade}</if>
+        <if test="noteType != null and noteType != ''">AND n.note_type = #{noteType}</if>
+        <if test="isFree != null">AND n.is_free = #{isFree}</if>
+        <if test="status != null and status != ''">AND n.status = #{status}</if>
+        <if test="status == null or status == ''">AND n.status = 'PUBLISHED'</if>
+        <if test="authorId != null">AND n.author_id = #{authorId}</if>
+        <if test="recommended != null and recommended == 1">AND n.is_recommended = 1</if>
+        <choose>
+            <when test="orderBy == 'rating'">ORDER BY n.avg_rating DESC, n.rating_count DESC</when>
+            <when test="orderBy == 'download'">ORDER BY n.download_count DESC</when>
+            <when test="orderBy == 'popular'">ORDER BY n.view_count DESC</when>
+            <otherwise>ORDER BY n.create_time DESC</otherwise>
+        </choose>
+    </select>
+
+    <select id="selectDetail" resultType="com.textbook.entity.StudyNote">
+        SELECT n.*, u.real_name AS author_name, c.course_name, m.major_name,
+               t.real_name AS recommend_teacher_name
+        FROM study_note n
+        LEFT JOIN sys_user u ON n.author_id = u.id
+        LEFT JOIN sys_course c ON n.course_id = c.id
+        LEFT JOIN sys_major m ON n.major_id = m.id
+        LEFT JOIN sys_user t ON n.recommend_teacher_id = t.id
+        WHERE n.id = #{id} AND n.deleted = 0
+    </select>
+
+</mapper>

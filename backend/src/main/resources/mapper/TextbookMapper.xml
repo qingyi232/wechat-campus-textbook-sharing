@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.textbook.mapper.TextbookMapper">
+
+    <select id="selectTextbookPage" resultType="com.textbook.entity.Textbook">
+        SELECT t.*, u.real_name AS seller_name, c.course_name, m.major_name
+        FROM textbook t
+        LEFT JOIN sys_user u ON t.seller_id = u.id
+        LEFT JOIN sys_course c ON t.course_id = c.id
+        LEFT JOIN sys_major m ON t.major_id = m.id
+        WHERE t.deleted = 0
+        <if test="keyword != null and keyword != ''">
+            AND (t.title LIKE CONCAT('%',#{keyword},'%') OR t.author LIKE CONCAT('%',#{keyword},'%') OR t.publisher LIKE CONCAT('%',#{keyword},'%'))
+        </if>
+        <if test="courseId != null">AND t.course_id = #{courseId}</if>
+        <if test="majorId != null">AND t.major_id = #{majorId}</if>
+        <if test="grade != null and grade != ''">AND t.grade = #{grade}</if>
+        <if test="condition != null and condition != ''">AND t.book_condition = #{condition}</if>
+        <if test="minPrice != null">AND t.price &gt;= #{minPrice}</if>
+        <if test="maxPrice != null">AND t.price &lt;= #{maxPrice}</if>
+        <if test="status != null and status != ''">AND t.status = #{status}</if>
+        <if test="status == null or status == ''">AND t.status = 'ON_SALE'</if>
+        <if test="sellerId != null">AND t.seller_id = #{sellerId}</if>
+        <choose>
+            <when test="orderBy == 'price_asc'">ORDER BY t.price ASC</when>
+            <when test="orderBy == 'price_desc'">ORDER BY t.price DESC</when>
+            <when test="orderBy == 'popular'">ORDER BY t.view_count DESC</when>
+            <otherwise>ORDER BY t.create_time DESC</otherwise>
+        </choose>
+    </select>
+
+    <select id="selectDetail" resultType="com.textbook.entity.Textbook">
+        SELECT t.*, u.real_name AS seller_name, c.course_name, m.major_name
+        FROM textbook t
+        LEFT JOIN sys_user u ON t.seller_id = u.id
+        LEFT JOIN sys_course c ON t.course_id = c.id
+        LEFT JOIN sys_major m ON t.major_id = m.id
+        WHERE t.id = #{id} AND t.deleted = 0
+    </select>
+
+</mapper>

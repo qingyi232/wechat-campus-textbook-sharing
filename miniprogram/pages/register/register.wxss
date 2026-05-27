@@ -1,0 +1,4 @@
+.form-item { display: flex; align-items: center; border-bottom: 2rpx solid #f0f0f0; padding: 20rpx 0; }
+.form-item .label { width: 120rpx; font-size: 28rpx; color: #666; flex-shrink: 0; }
+.form-item input, .form-item picker { flex: 1; font-size: 28rpx; }
+.placeholder { color: #ccc; }
